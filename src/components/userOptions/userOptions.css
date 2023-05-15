@@ -1,0 +1,84 @@
+.userOptionsContainer {
+    height: 40%;
+    width: 300px;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: rgb(212, 158, 248);
+    position: absolute;
+    top: 70px;
+    right: 6px;
+    animation: ease-in;
+    transition: right 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95) 0s;
+    border-radius: 10px;
+    z-index: 9;
+}
+.userOptionsContainer.active {
+    display: flex;
+}
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    gap: 20px;
+    text-align: center;
+    width: 90%;
+}
+.userOptionsClose {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    align-self: flex-end;
+    font-size: 28px;
+}
+.userOptionsClose:hover {
+    cursor: pointer;
+}
+.userInfoIcon {
+    align-self: center;
+    font-size: 60px;
+}
+.options, .logout {
+    display: flex;
+    flex-direction: column;
+}
+.logoutBtn {
+    justify-content: flex-end;
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: white;
+    padding: 10px;
+}
+.logoutBtn:hover {
+    cursor: pointer;
+    background-color: rgb(235, 230, 230);
+}
+
+@media only screen and (max-width: 600px) {
+    .userOptionsContainer {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        top: -100%;
+        right: 0;
+        padding: 0px;
+        border-radius: 0px;
+        transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    }
+    .userOptionsContainer.active {
+        top: 0;
+    }
+    .userInfo {
+        margin-top: 20px;
+    }
+    .logout {
+        width: 100%;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .logoutBtn {
+        width: 80%;
+    }
+}

@@ -1,0 +1,10 @@
+.timeBlock {
+    width: 100%;
+    display: flex;
+}
+.timeBlockHours {
+    flex: 1;
+}
+.timeBlockDetails {
+    flex: 1;
+}

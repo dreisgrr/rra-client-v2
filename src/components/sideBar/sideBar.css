@@ -1,0 +1,76 @@
+.sideBar {
+    height: 100%;
+    width: 400px;
+    display: flex;
+    background-color: rgb(212, 158, 248);
+    position: absolute;
+    top: 0;
+    left: -100%;
+    transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+    z-index: 99;
+}
+.sideBar.active {
+    left: 0;
+}
+.sideBarContainer {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    color: #231E33;
+}
+.sideBarTopSection {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 30px;
+}
+.sideBarTitle {
+    font-size: 20px;
+}
+.sideBarClose {
+    text-align: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+}
+.sideBarClose:hover {
+    cursor: pointer;
+    background-color: rgb(235, 230, 230);
+}
+.sideBarContents {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+.sideBarLink {
+    text-decoration: none;
+    color: black;
+}
+.sideBarItem {
+    padding: 10px;
+    display: flex;
+    height: 28px;
+    gap: 10px;
+    justify-content: flex-start;
+    border-radius: 10px;
+}
+.sideBarItem:hover, .sideBarItem>label:hover {
+    cursor: pointer;
+    background-color: rgb(235, 230, 230);
+}
+.sideBarItemIcon {
+    height: 24px;
+    width: 24px;
+}
+@media only screen and (max-width: 600px) {
+    .sideBar {
+        width: 100vw;
+    }
+}

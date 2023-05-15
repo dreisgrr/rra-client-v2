@@ -1,0 +1,102 @@
+.assocHomeContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(240, 241, 242);
+}
+.assocHomeBody {
+    display: flex;
+    width: 80%;
+    height: 100%;
+    margin: 32px auto 0px;
+    padding: 0px 32px 40px;
+    transition: all 100ms ease-in-out 0s;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.assocHomeTopSection, .assocHomeLowerSection {
+    width: 100%;
+    align-self: center;
+    display: flex;
+    justify-content: space-between;
+}
+.assocHomeTopSection {
+    padding-bottom: 15px;
+}
+.assocHomeLowerSection {
+    flex-flow: wrap;
+    justify-content: flex-start;
+    gap: 20px;
+}
+.assocHomeGreetings {
+    height: 48px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.5em;
+    font-weight: bold;
+    line-height: 1.25rem;
+    letter-spacing: 0.015rem;
+    color: rgb(73, 73, 73);
+    flex: 1;
+}
+.assocHomeTimeNow {
+    flex: 1;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    flex-shrink: 1;
+    color: rgb(94, 106, 117);
+    height: 48px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    justify-content: flex-end;
+}
+.assocTiles {
+    background-color: white;
+    border-radius: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+}
+.awaiting, .upcoming {
+    width: 60.5%;
+    min-height: 150px;
+}
+.tasks {
+    width: 30%;
+    min-width: 200px;
+    min-height: 250px;
+}
+.assocTiles>div {
+    text-align: center;
+    padding-top: 15px;
+}
+.tasks>h3 {
+    padding-bottom: 15px;
+}
+.tasks>button {
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.tasks>button:hover {
+    background-color: rgb(235, 230, 230);
+}
+@media only screen and (max-width: 600px) {
+    .assocHomeGreetings, .assocHomeTimeNow {
+        font-size: 0.7em;
+    }
+    .assocTiles {
+        width: 100%;
+    }
+    .assocHomeLowerSection {
+        justify-content: center;
+    }
+}

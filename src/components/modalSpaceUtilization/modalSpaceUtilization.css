@@ -1,0 +1,55 @@
+.modalSpaceUtil {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.modalSpaceUtilContainer {
+    width: 400px;
+    height: max-content;
+    background-color: white;
+    padding: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+.closeModal {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    color: black;
+}
+.modalSpaceUtilTitle {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.modalSpaceUtilContent {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+}
+@media only screen and (max-width: 600px) {
+    .modalSpaceUtilContainer {
+        width: 85%;
+    }
+    .modalSpaceUtilContent {
+        width: 100%;
+        padding: 0;
+    }
+}

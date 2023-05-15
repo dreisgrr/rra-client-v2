@@ -1,0 +1,178 @@
+.reservationItemContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.reservationItemHeader {
+    width: 100%;
+    height: 64px;
+    background-color: rgb(141, 35, 212);
+    color: white;
+}
+.reservationItemHeader>h3 {
+    padding-left: 100px;
+    line-height: 64px;
+}
+.reservationItemWrapper {
+    display: flex;
+    gap: 20px;
+    padding-top: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 90%;
+    align-self: center;
+}
+.reservationItemActionBox {
+    flex: 1;
+    background-color:#E1EDFF;
+    border-radius: 10px;
+    top: 10px;
+    height: max-content;
+    padding: 10px 10px;
+    flex-direction: column;
+}
+.reservationItemTitle {
+    font-size: 20px;
+    color: #5009B5;
+    margin-bottom: 10px;
+}
+.reservationItemActionBoxItem {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+.reservationItemActionBoxItem>label {
+    font-size: 12px;
+    font-weight: 600;
+}
+.statusWrapper {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    background-color: white;
+    justify-content: center;
+}
+.statusWrapper.green {
+    color: green;
+}
+.statusWrapper.red {
+    color: red;
+}
+.reservationItemActionBoxItemStatus {
+    height: 30px;
+    padding: 5px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+.reservationItemActionBoxItemStatus.green {
+    color: green;
+}
+.reservationItemActionBoxItemStatus.red {
+    color: red;
+}
+.reservationRemarks {
+    display: flex;
+    height: 30px;
+    padding: 5px;
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+}
+.reservationItemActionBox>button {
+    padding: 10px;
+    color: white;
+    border: none;
+    font-weight: 500;
+    width: 100%;
+    cursor: pointer;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+.reservationItemApproveBtn {
+    background-color: green;
+}
+.reservationItemRejectBtn {
+    background-color: red;
+}
+.reservationItemDefaultBtn {
+    background-color: #5009B5;
+}
+.reservationItemRightPanel {
+    flex: 3;
+}
+.reservationItemPanelContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #F5F5F5;
+    border-radius: 10px;
+    color: #231E33;
+}
+.reservationItemItemsWrapper {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+}
+.reservationItemItemsColumn {
+    display: flex;
+    align-content: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    gap: 10px;
+    width: 180px;
+}
+.reservationItemItem {
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+}
+.reservationItemItem>label {
+    font-weight: 600;
+    font-size: 14px;
+}
+.reservationItemItem>span {
+    font-size: 13px;
+}
+@media only screen and (max-width: 600px) {
+    .reservationItemHeader>h3 {
+        padding-left: 30px;
+    }
+    .reservationItemWrapper {
+        padding-top: 10px;
+        padding-left: 5px;
+        flex-direction: column;
+    }
+    .reservationItemTitle {
+        font-size: 16px;
+    }
+    .reservationItemActionBoxItemWrapper {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+    }
+    .reservationItemActionBoxItem {
+        width: 50%;
+    }
+    .reservationItemActionBoxItemStatus {
+        font-size: 12px;
+    }
+    .reservationRemarks {
+        font-size: 12px;
+    }
+    .reservationItemRightPanel, .reservationItemPanelContainer {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        overflow-x: hidden;
+    }
+    .reservationItemItemsWrapper {
+        display: flex;
+        flex-direction: column;
+    }
+}

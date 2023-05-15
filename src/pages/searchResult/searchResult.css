@@ -1,0 +1,139 @@
+.searchResultContainer {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.searchResultHeader {
+    width: 100%;
+    height: 64px;
+    background-color: rgb(141, 35, 212);
+    color: white;
+}
+.searchResultHeader>h3 {
+    padding-left: 100px;
+    line-height: 64px;
+}
+.searchResultWrapper {
+    display: flex;
+    gap: 20px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+.searchResultParamsBox {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-color: #E1EDFF;
+    border-radius: 10px;
+    top: 10px;
+    height: max-content;
+    padding: 10px 10px;
+}
+.searchResultParamsItemWrapper {
+    display: flex;
+    flex-direction: column;
+}
+.searchResultParamsTitle {
+    font-size: 20px;
+    color: #5009B5;
+    margin-bottom: 10px;
+}
+.searchResultList {
+    flex: 3;
+    padding-right: 10px;
+}
+.searchResultParamsItem {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+.searchResultParamsItem>label {
+    font-size: 12px;
+    font-weight: 600;
+}
+.searchResultParamsItem>span {
+    height: 30px;
+    padding: 5px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.searchResultParamsItemOptionsWrapper {
+    padding: 0px;
+}
+.searchResultParamsItemOptionsItem {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.searchResultParamsBox>button {
+    padding: 10px;
+    background-color: #5009B5;
+    color: white;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 5px;
+}
+@media only screen and (max-width: 600px) {
+    .searchResultHeader>h3 {
+        padding-left: 30px;
+    }
+    .searchResultWrapper {
+        flex-direction: column;
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+    .searchResultParamsBox {
+        flex-direction: column;
+        gap: 5px;
+    }
+    .searchResultParamsItemWrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        justify-content: space-evenly;
+    }
+    .searchResultParamsItem {
+        display: flex;
+        width: max-content;
+        flex-direction: column;
+        margin-bottom: 3px;
+    }
+    .searchResultParamsItem>label, .searchResultParamsItemOptionsItemText {
+        font-size: 12px;
+        font-weight: 600;
+        flex: 3;
+    }
+    .searchResultParamsItem>span, .searchResultParamsItemOptionsItemValue {
+        font-size: 12px;
+        background-color: #E1EDFF;
+        display: flex;
+        flex: 3;
+        cursor: pointer;
+        align-items: unset;
+    }
+    .searchResultParamsItemOptions {
+        display: flex;
+        flex-direction: row;
+        width: max-content;
+    }
+    .searchResultParamsItemOptionsWrapper {
+        display: flex;
+        width: max-content;
+        flex-direction: row;
+        gap: 8px;
+    }
+    .searchResultParamsItemOptionsItem {
+        flex-direction: column;
+    }
+    .searchResultParamsItemOptionsItemValue {
+        font-weight: normal;
+    }
+}

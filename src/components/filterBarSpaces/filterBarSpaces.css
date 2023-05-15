@@ -1,0 +1,60 @@
+.roomFilterBarContainer {
+    display: flex;
+    justify-content: center;
+    height: 60px;
+    width: 100%;
+    color: #231E33;
+}
+.roomFilterBarWrapper {
+    height: 30px;
+    background-color: white;
+    color: 231E33;
+    border: 3px solid #02BBB4;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px 0px ;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 1024px;
+    justify-items: center;
+}
+.roomFilterBarItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.roomFilterBarItemBtn {
+    width: 100px;
+    background-color: #6726C3;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.roomFilterBarItemSelect {
+    border: none;
+    outline: none;
+    color: black;
+    width: 150px;
+}
+.roomFilterBarItemOptions {
+    color: black;
+    width: max-content;
+}
+@media only screen and (max-width: 600px) {
+    .roomFilterBarContainer {
+        height: max-content;
+        padding-top: 10px;
+    }
+    .roomFilterBarWrapper {
+        flex-direction: column;
+        height: max-content;
+        gap: 10px;
+    }
+    .roomFilterBarItem {
+        width: 90%;
+        justify-content: space-around;
+    }
+}

@@ -1,0 +1,94 @@
+
+    .topBarContainer {
+        height: 64px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        border-bottom: 0.1px solid rgb(190, 187, 187);
+        box-shadow: 1px 2px rgb(190, 187, 187);
+    }
+
+    .topBarMenuToggle {
+        align-self: center;
+        align-content: center;
+        text-align: center;
+        justify-content: center;
+        background-color: white;
+        flex: 1;
+        height: 64px;
+        display: flex;
+        padding-left: 10px;
+        padding-right: 10px;
+        border: 0.1px solid rgb(190, 187, 187);
+    }
+    .topBarMenuToggle:hover {
+        cursor: pointer;
+        background-color: rgb(235, 230, 230);
+    }
+    .topBarMenuToggleIcon {
+        justify-content: center;
+        align-self: center;
+    }
+    .topBarMenuToggle>span {
+        padding-left: 10px;
+        justify-content: center;
+        align-self: center;
+    }
+    .topBarTopBarWrapper {
+        flex: 12;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .topBarLink {
+        align-self: center;
+    }
+    .topBarCompanyLogo {
+        display: flex;
+        cursor: pointer;
+        padding-top: 5px;
+        padding-left: 10px;
+        -webkit-user-select: none; 
+        -ms-user-select: none; 
+        user-select: none; 
+    }
+    .companyLogo {
+        width: 132px;
+    }
+    .topBarOptions {
+        font-size: 24px;
+        margin-right: 24px;
+        align-self: center;
+        text-align: center;
+        height: 36px;
+        width: 36px;
+        border-radius: 18px;
+    }
+    .topBarOptions:hover {
+        cursor: pointer;
+        background-color: rgb(235, 230, 230);
+    }
+
+@media only screen and (max-width: 600px) {
+    .topBarMenuToggle {
+        align-self: center;
+        align-content: center;
+        text-align: center;
+        justify-content: center;
+        background-color: white;
+        flex: 1;
+        height: 64px;
+        display: flex;
+    }
+    .topBarMenuToggle:hover {
+        cursor: pointer;
+        background-color: rgb(235, 230, 230);
+    }
+    .topBarMenuToggle>span {
+        display: none;
+    }
+    .topBarOptions:hover {
+        cursor: pointer;
+        background-color: rgb(235, 230, 230);
+    }
+}
