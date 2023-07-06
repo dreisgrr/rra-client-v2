@@ -1,0 +1,32 @@
+.rsrContainer {
+    display: flex;
+    justify-content: center;
+    border-top: 3px solid gray;
+    border-bottom: 3px solid gray;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.rsrWrapper {
+    width: 100%;
+    max-width: 1024px;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.listTitle {
+    font-size: 20px;
+    text-align: center;
+}
+@media only screen and (max-width: 600px) {
+    .listTitle {
+        padding-left: 20px;
+        font-size: 16px;
+    }
+    .rsrList {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}

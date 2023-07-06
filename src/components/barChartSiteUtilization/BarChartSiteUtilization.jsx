@@ -8,10 +8,11 @@ import {
     Tooltip,
     Bar,
   } from "recharts";
+import { forwardRef } from 'react';
 
-const BarChartSiteUtilization = ({data}) => {
+const BarChartSiteUtilization = forwardRef( function BarChartSiteUtilization({data}, ref) {
     return (
-        <div className='bcsuContainer'>
+        <div className='bcsuContainer' ref={ref}>
             <div className="bcWrapper">
                 <BarChart width={730} height={250} data={data}>
                     <CartesianGrid strokeDasharray="3 3" />
@@ -26,6 +27,6 @@ const BarChartSiteUtilization = ({data}) => {
             <p className="bcsuTitle">Total utilization for {data[0]?.timePeriod}</p>
         </div>
     )
-}
+})
 
 export default BarChartSiteUtilization

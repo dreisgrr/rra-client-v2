@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import { format } from "date-fns";
 import TitleImage from '../../../components/titleImage/TitleImage.jsx'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
     const { user } = useContext(AuthContext)
@@ -20,18 +21,22 @@ const Home = () => {
                 </div>
                 <div className="assocHomeLowerSection">
                     <div className="assocTiles awaiting">
-                        <h3>Awaiting Action</h3>
-                        <div>Show List</div>
-                    </div>
-                    <div className="assocTiles tasks">
-                        <h3>Quick Tasks</h3>
-                        <button>Reports</button>
-                        <button>Reserve</button>
-                    </div>
-                    <div className="assocTiles upcoming">
                         <h3>Upcoming Booking</h3>
                         <div>No upcoming booking.</div>
                     </div>
+                    <div className="assocTiles tasks">
+                        <h3>Quick Tasks</h3>
+                        <Link to='/reservations'>
+                            <button className="homeBtn">My Reservations</button>
+                        </Link>
+                        <Link to='/search'>
+                            <button className="homeBtn">Search Spaces</button>
+                        </Link>
+                    </div>
+                    {/* <div className="assocTiles upcoming">
+                        <h3>Upcoming Booking</h3>
+                        <div>No upcoming booking.</div>
+                    </div> */}
                 </div>
                 
                 

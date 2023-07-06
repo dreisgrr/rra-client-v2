@@ -5,22 +5,25 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import { useState, useContext } from 'react';
 import { useEffect } from 'react';
-import { SPACE_TYPES_CODES, SPACE_TYPES } from '../../utils/definitions.js'
+import { SPACE_TYPES_CODES, SPACE_TYPES, MODAL_MESSAGE } from '../../utils/definitions.js'
+import requestUrl from '../../utils/requestMethods.js'
 
 import useFetch from '../../hooks/useFetch.js'
 import { AuthContext } from '../../context/AuthContext.js'
 import ReservationForm from '../reservationForm/ReservationForm';
 import SearchResultCard from '../searchResultCard/SearchResultCard';
 import ModalAvailability from '../../components/modalAvailability/ModalAvailability';
+import ModalMessage from '../../components/modalMessage/ModalMessage';
 
 const SearchResult = ({searchQuery}) => {
-    console.log(searchQuery)
     const { user } = useContext(AuthContext)
     const location = useLocation();
     const { state } = location;
     console.log(state)
     const navigate = useNavigate();
     const [hours, setHours] = useState([]);
+    const [userActiveRes, setUserActiveRes] = useState(0);
+    const [messageModal, setMessageModal] = useState('');
 
     const today = new Date()
     const generateHours = () => {
@@ -58,14 +61,27 @@ const SearchResult = ({searchQuery}) => {
     const [openReservationModal, setOpenReservationModal] = useState(false)
     const [selectedRoomToReserve, setSelectedRoomToReserve] = useState({});
     const handleReserve = (room) => {
-        setOpenReservationModal(true)
-        setSelectedRoomToReserve(room);
+        //check active reservations
+        if (((user?.permissions?.isManager || user?.permissions?.isWorkforce) && userActiveRes > 1) ||
+        ((user?.permissions?.isAssociate && !(user?.permissions?.isManager || user?.permissions?.isWorkforce)) && userActiveRes > 0)) {
+            if (user?.permissions?.isAssociate) 
+                setMessageModal('You are not allowed to have more than one active reservation at a time.')
+            if (user?.permissions?.isManager || user?.permissions?.isWorkforce)
+                setMessageModal('You are not allowed to have more than two active reservation at a time.')
+            setOpenModalMessage(true)
+        }
+        else {
+            setOpenReservationModal(true)
+            setSelectedRoomToReserve(room);
+        }
     }
     const [openAvailabilityModal, setOpenAvailabilityModal] = useState(false)
     const handleAvailability = (room) => {
         setOpenAvailabilityModal(true)
         setSelectedRoomToReserve(room)
     }
+    const [openModalMessage, setOpenModalMessage] = useState(false)
+    
     const goHome = (e) => {
         e.preventDefault()
         navigate('/search');
@@ -77,9 +93,21 @@ const SearchResult = ({searchQuery}) => {
         `/rooms/getavailableSlots?siteId=${state?.site}&facilityType=${state?.search}&capacity=${state?.options.pax}&requestStart=${state?.requestStartTime}&requestEnd=${state?.requestEndTime}&id=${user._id}`
         :
         `/rooms/getavailable?siteId=${state?.site}&facilityType=${state?.search}&capacity=${state?.options.pax}&requestStart=${state?.requestStartTime}&requestEnd=${state?.requestEndTime}&id=${user._id}`
-    console.log(query)
     const { data, loading, error } = useFetch(query);
-    console.log(data);
+
+    useEffect(() => {
+        let config = {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            withCredentials: 'same-origin'
+        }
+        requestUrl.get(`/reservations/countUserActiveReservations?domainId=${user.domainId}&id=${user._id}`, config)
+        .then(response => setUserActiveRes(response.data))
+        .catch(error => { 
+            console.error(error)
+        })
+    }, [user])
     return (
         <div className="searchResultContainer">
             <div className="searchResultHeader">
@@ -153,6 +181,10 @@ const SearchResult = ({searchQuery}) => {
             {
                 openAvailabilityModal &&
                 <ModalAvailability selectedRoom={selectedRoomToReserve} openAvailabilityModal={setOpenAvailabilityModal} requestDetails={location.state} hoursDef={hours} />
+            }
+            {
+                openModalMessage &&
+                <ModalMessage openModalMessage={setOpenModalMessage} message={messageModal} title={MODAL_MESSAGE.RESERVATION_LIMIT}/>
             }
         </div>
     )

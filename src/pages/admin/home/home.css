@@ -78,7 +78,7 @@
 .tasks>h3 {
     padding-bottom: 15px;
 }
-.tasks>button {
+.tasks>button, .homeBtn {
     padding: 10px;
     width: 100%;
     margin-bottom: 10px;
@@ -86,7 +86,7 @@
     border-radius: 10px;
     cursor: pointer;
 }
-.tasks>button:hover {
+.tasks>button:hover, .homeBtn:hover {
     background-color: rgb(235, 230, 230);
 }
 @media only screen and (max-width: 600px) {

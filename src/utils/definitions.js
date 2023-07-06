@@ -53,6 +53,9 @@ export const DURATION_VALUES = ["1", "2", "3", "4"]
 export const ERROR_MESSAGE = {
     CONTACT: "Contact System Administrator"
 }
+export const MODAL_MESSAGE = {
+    RESERVATION_LIMIT: "Reservation Limit"
+}
 
 export const reservationStatusActions = [
     { name: "cancel", value: "CANCELLED" },

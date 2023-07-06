@@ -7,11 +7,19 @@ import { format } from "date-fns"
 
 import {SITE_DEFAULT_ID, DURATION_VALUES, SPACE_TYPES} from "../../utils/definitions.js"
 import { SitesContext } from '../../context/SitesContext'
+import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from 'react-router-dom';
+
+Date.prototype.addDays = (days) => {
+    let date = new Date()
+    date.setDate(date.getDate() + days)
+    return date;
+}
 
 const SearchBar = ({activeIndex, setSearchQuery}) => {
     const navigate = useNavigate();
     const sitesCtx = useContext(SitesContext)
+    const { user } = useContext(AuthContext)
     const sitesMatch = sitesCtx?.find( (item)=> item._id===SITE_DEFAULT_ID)
     const defaultSelectedSite = sitesMatch?._id
     const [site, setSite] = useState(SITE_DEFAULT_ID);
@@ -53,7 +61,9 @@ const SearchBar = ({activeIndex, setSearchQuery}) => {
         setTime(today.getHours() + 1)
     }, [hours])
     const [duration, setDuration] = useState(1);
-    const today = new Date()
+    const today = new Date();
+    const managerBookingWindow = today.addDays(30);
+    const assocBookingWindow = today.addDays(7);
     const [date, setDate] = useState(
         {
             date: new Date(),
@@ -145,7 +155,7 @@ const SearchBar = ({activeIndex, setSearchQuery}) => {
                         <span className="searchBarText" onClick={()=> setToggleDatePicker(!toggleDatePicker)} >{`${format(date.date, "dd MMM yyyy")}`}</span>    
                     </div>          
                 </div>
-                { toggleDatePicker && 
+                { toggleDatePicker && (user?.permissions?.isAdmin || user?.permissions?.isFacility) ?
                     <Calendar 
                         date={date.date}
                         minDate={new Date()}
@@ -153,6 +163,28 @@ const SearchBar = ({activeIndex, setSearchQuery}) => {
                         editableDateInputs={true}
                         className="searchBarDateRange"
                     />
+                    : 
+                    toggleDatePicker && (user?.permissions?.isManager || user?.permissions?.isWorkforce) ?
+                    <Calendar 
+                        date={date.date}
+                        minDate={new Date()}
+                        onChange={(e) => handleDatePicker("date", e )}
+                        editableDateInputs={true}
+                        maxDate={managerBookingWindow}
+                        className="searchBarDateRange"
+                    />
+                    :
+                    toggleDatePicker && user?.permissions?.isAssociate ?
+                    <Calendar 
+                        date={date.date}
+                        minDate={new Date()}
+                        onChange={(e) => handleDatePicker("date", e )}
+                        editableDateInputs={true}
+                        maxDate={assocBookingWindow}
+                        className="searchBarDateRange"
+                    />
+                    : 
+                    ''
                 }
                 <div className="searchBarItem">
                     <FontAwesomeIcon icon={ faClock } className="searchBarIcon" />

@@ -32,7 +32,7 @@ const ReservationForm = ({openReservationModal, selectedRoom, requestDetails, ho
             duration: requestDetails.duration,
             pax: requestDetails.options.pax,
             purpose: '',
-            occupants: [],
+            occupants: '',
             position: user.domainId,
             shiftSchedule: "First",
             lineOfBusinessOrTower: "Delivery Excellence"

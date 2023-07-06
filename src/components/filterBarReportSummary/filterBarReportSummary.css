@@ -1,0 +1,62 @@
+.filterBarReportSummaryContainer {
+    display: flex;
+    height: 60px;
+    width: 100%;
+    color: #231E33;
+}
+.filterBarReportSummaryWrapper {
+    height: 30px;
+    background-color: white;
+    color: 231E33;
+    border: 3px solid #02BBB4;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px 0px ;
+    border-radius: 5px;
+    width: 35%;
+    max-width: 1024px;
+    justify-items: center;
+}
+.filterBarReportSummaryItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.filterBarReportSummaryItemBtn {
+    width: 100px;
+    background-color: #6726C3;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.filterBarReportSummaryItemSelect {
+    border: none;
+    outline: none;
+    color: black;
+    width: 150px;
+}
+.filterBarReportSummaryItemOptions {
+    color: black;
+    width: max-content;
+}
+@media only screen and (max-width: 600px) {
+    .filterBarReportSummaryContainer {
+        height: max-content;
+        padding-top: 10px;
+    }
+    .filterBarReportSummaryWrapper {
+        flex-direction: row;
+        width: max-content;
+        height: max-content;
+        padding-left: 5px;
+        padding-right: 5px;
+        gap: 10px;
+    }
+    .filterBarReportSummaryItem {
+        width: 90%;
+        justify-content: space-around;
+    }
+}

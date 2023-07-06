@@ -19,6 +19,16 @@
     justify-content: center;
     padding: 20px;
 }
+.reportPrintBtn {
+    background-color: #5009B5;
+    color: white;
+    font-weight: bold;
+    padding: 10px 5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-transform: capitalize;
+}
 @media only screen and (max-width: 600px) {
     .reportsContent {
         padding-top: 10px;

@@ -1,0 +1,10 @@
+.rsrSpaceInfoWrapper {
+    font-size: 14px;
+    padding-bottom: 8px;
+}
+.rsrSectionItem {
+    text-transform: capitalize;
+}
+.rsrSpaceName {
+    font-weight: 600;
+}
