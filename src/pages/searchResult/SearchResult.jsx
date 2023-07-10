@@ -14,6 +14,7 @@ import ReservationForm from '../reservationForm/ReservationForm';
 import SearchResultCard from '../searchResultCard/SearchResultCard';
 import ModalAvailability from '../../components/modalAvailability/ModalAvailability';
 import ModalMessage from '../../components/modalMessage/ModalMessage';
+import AutoLogout from '../../components/autoLogout/AutoLogout';
 
 const SearchResult = ({searchQuery}) => {
     const { user } = useContext(AuthContext)
@@ -109,84 +110,86 @@ const SearchResult = ({searchQuery}) => {
         })
     }, [user])
     return (
-        <div className="searchResultContainer">
-            <div className="searchResultHeader">
-                <h3>Search Result</h3>
-                {/* {data.length} */}
-            </div>
-            <div className="searchResultWrapper">
-                <div className="searchResultParamsBox">
-                    <div className="searchResultParamsItemWrapper">
-                        <div className="searchResultParamsItem">
-                            <label>Space Type</label>
-                            <span>{SPACE_TYPES_CODES[`${state?.search}`]}</span>
-                        </div>
-                        <div className="searchResultParamsItem">
-                            <label>Site</label>
-                            <span>{state?.site === '63b56fea41184440f9f90696' ? 'AGT' : state?.site === '63b56f2241184440f9f90694' ? 'GLAS' : state?.site === '63b570b7b9b00d78455bf72d' ? 'OFT' : 'SMS'}</span>
-                        </div>
-                        <div className="searchResultParamsItem">
-                            <label>Date</label>
-                            <span>{`${format(state?.date.date, "MM/dd/yyyy")}`}</span>
-                        </div>
-                        <div className="searchResultParamsItemOptions">
-                            <div className="searchResultParamsItemOptionsWrapper">
-                                <div className="searchResultParamsItemOptionsItem">
-                                    <span className="searchResultParamsItemOptionsItemText">Start Time</span>
-                                    <span className="searchResultParamsItemOptionsItemValue">{`${hours[state?.computedStartTime]}`}</span>
-                                </div>
-                                <div className="searchResultParamsItemOptionsItem">
-                                    <span className="searchResultParamsItemOptionsItemText">Duration</span>
-                                    <span className="searchResultParamsItemOptionsItemValue">{ state?.duration === 1 ? `${state?.duration} hour` : `${state?.duration} hours`}</span>
-                                </div>
-                                <div className="searchResultParamsItemOptionsItem">
-                                    <span className="searchResultParamsItemOptionsItemText">Pax</span>
-                                    <span className="searchResultParamsItemOptionsItemValue">{state?.options.pax}</span>
+        <AutoLogout>
+            <div className="searchResultContainer">
+                <div className="searchResultHeader">
+                    <h3>Search Result</h3>
+                    {/* {data.length} */}
+                </div>
+                <div className="searchResultWrapper">
+                    <div className="searchResultParamsBox">
+                        <div className="searchResultParamsItemWrapper">
+                            <div className="searchResultParamsItem">
+                                <label>Space Type</label>
+                                <span>{SPACE_TYPES_CODES[`${state?.search}`]}</span>
+                            </div>
+                            <div className="searchResultParamsItem">
+                                <label>Site</label>
+                                <span>{state?.site === '63b56fea41184440f9f90696' ? 'AGT' : state?.site === '63b56f2241184440f9f90694' ? 'GLAS' : state?.site === '63b570b7b9b00d78455bf72d' ? 'OFT' : 'SMS'}</span>
+                            </div>
+                            <div className="searchResultParamsItem">
+                                <label>Date</label>
+                                <span>{`${format(state?.date.date, "MM/dd/yyyy")}`}</span>
+                            </div>
+                            <div className="searchResultParamsItemOptions">
+                                <div className="searchResultParamsItemOptionsWrapper">
+                                    <div className="searchResultParamsItemOptionsItem">
+                                        <span className="searchResultParamsItemOptionsItemText">Start Time</span>
+                                        <span className="searchResultParamsItemOptionsItemValue">{`${hours[state?.computedStartTime]}`}</span>
+                                    </div>
+                                    <div className="searchResultParamsItemOptionsItem">
+                                        <span className="searchResultParamsItemOptionsItemText">Duration</span>
+                                        <span className="searchResultParamsItemOptionsItemValue">{ state?.duration === 1 ? `${state?.duration} hour` : `${state?.duration} hours`}</span>
+                                    </div>
+                                    <div className="searchResultParamsItemOptionsItem">
+                                        <span className="searchResultParamsItemOptionsItemText">Pax</span>
+                                        <span className="searchResultParamsItemOptionsItemValue">{state?.options.pax}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <button onClick={goHome}>Back</button>
                     </div>
-                    <button onClick={goHome}>Back</button>
-                </div>
-                <div className="searchResultList">
-                        {
-                            loading ?
-                                "Loading..."
-                            :
-                                error ? 
-                                    <>
-                                        <span>{error.message}</span><br/>
-                                        <span>Contact System Administrator</span>
-                                    </>
+                    <div className="searchResultList">
+                            {
+                                loading ?
+                                    "Loading..."
                                 :
-                                    Object.keys(data).length === 0 ?
-                                        "No matches found"
-                                    :
-                                        <> 
-                                            {data.map((item) => (
-                                            <SearchResultCard 
-                                                key={item._id} 
-                                                room={item}
-                                                handleReserve={handleReserve}
-                                                handleAvailability={handleAvailability}
-                                            />
-                                            ))}
+                                    error ? 
+                                        <>
+                                            <span>{error.message}</span><br/>
+                                            <span>Contact System Administrator</span>
                                         </>
-                        }
+                                    :
+                                        Object.keys(data).length === 0 ?
+                                            "No matches found"
+                                        :
+                                            <> 
+                                                {data.map((item) => (
+                                                <SearchResultCard 
+                                                    key={item._id} 
+                                                    room={item}
+                                                    handleReserve={handleReserve}
+                                                    handleAvailability={handleAvailability}
+                                                />
+                                                ))}
+                                            </>
+                            }
+                    </div>
                 </div>
+                { openReservationModal && 
+                    <ReservationForm selectedRoom={selectedRoomToReserve} openReservationModal={setOpenReservationModal} requestDetails={location.state} hoursDef={hours}/>
+                }
+                {
+                    openAvailabilityModal &&
+                    <ModalAvailability selectedRoom={selectedRoomToReserve} openAvailabilityModal={setOpenAvailabilityModal} requestDetails={location.state} hoursDef={hours} />
+                }
+                {
+                    openModalMessage &&
+                    <ModalMessage openModalMessage={setOpenModalMessage} message={messageModal} title={MODAL_MESSAGE.RESERVATION_LIMIT}/>
+                }
             </div>
-            { openReservationModal && 
-                <ReservationForm selectedRoom={selectedRoomToReserve} openReservationModal={setOpenReservationModal} requestDetails={location.state} hoursDef={hours}/>
-            }
-            {
-                openAvailabilityModal &&
-                <ModalAvailability selectedRoom={selectedRoomToReserve} openAvailabilityModal={setOpenAvailabilityModal} requestDetails={location.state} hoursDef={hours} />
-            }
-            {
-                openModalMessage &&
-                <ModalMessage openModalMessage={setOpenModalMessage} message={messageModal} title={MODAL_MESSAGE.RESERVATION_LIMIT}/>
-            }
-        </div>
+        </AutoLogout>
     )
 }
 

@@ -69,4 +69,8 @@ export const reservationStatus = {
     APPROVED: "APPROVED",
     REJECTED: "REJECTED",
     CANCELLED: "CANCELLED",
-  };
+};
+
+export const GLOBAL = {
+    SESSION_DURATION: 1000 * 10
+}

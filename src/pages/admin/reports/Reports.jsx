@@ -21,6 +21,7 @@ import { useReactToPrint } from 'react-to-print'
 import FilterBarReportSummary from "../../../components/filterBarReportSummary/FilterBarReportSummary";
 import ReportSummaryResult from "../../../components/reportSummaryResult/ReportSummaryResult";
 import { useRef } from "react";
+import AutoLogout from "../../../components/autoLogout/AutoLogout";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props
@@ -107,39 +108,41 @@ const Reports = () => {
   }
 
   return (
-    <div className="reportsContainer">
-      <div className="reportsHeader">
-        <h3>Reports</h3>
-      </div>
-      <div className="reportsContent">
+    <AutoLogout>
+      <div className="reportsContainer">
+        <div className="reportsHeader">
+          <h3>Reports</h3>
+        </div>
+        <div className="reportsContent">
 
-          <Box sx={{ width: '100%'}}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-              <Tabs value={value} onChange={handleChange} aria-label='tabs'>
-                <Tab label='Site Utilization Overview' {...a11yProps(0)} />
-                <Tab label='Report Summary' {...a11yProps(1)} />
-              </Tabs>
+            <Box sx={{ width: '100%'}}>
+              <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                <Tabs value={value} onChange={handleChange} aria-label='tabs'>
+                  <Tab label='Site Utilization Overview' {...a11yProps(0)} />
+                  <Tab label='Report Summary' {...a11yProps(1)} />
+                </Tabs>
+              </Box>
+
+              <TabPanel value={value} index={0}>
+                <BarChartSiteUtilization data={barChartData} ref={graphRef} />
+                <button className="reportPrintBtn" onClick={handlePrintGraph}>Print Report</button>
+                {/* <ProgressBarSpaceUtilization data={progressbarData} /> */}
+              </TabPanel>
+              <TabPanel value={value} index={1}>
+                  <FilterBarReportSummary passFilter={(filter)=> handlePassFilter(filter)}/>
+                <div className="roomListResultWrapper">
+                  
+                  <ReportSummaryResult selectedSite={selectedSite} urlCall={urlCall} ref={componentRef} />
+                  <button className="reportPrintBtn" onClick={handlePrint}>Print Report</button>
+                </div>
+              </TabPanel>
+
             </Box>
-
-            <TabPanel value={value} index={0}>
-              <BarChartSiteUtilization data={barChartData} ref={graphRef} />
-              <button className="reportPrintBtn" onClick={handlePrintGraph}>Print Report</button>
-              {/* <ProgressBarSpaceUtilization data={progressbarData} /> */}
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                <FilterBarReportSummary passFilter={(filter)=> handlePassFilter(filter)}/>
-              <div className="roomListResultWrapper">
-                
-                <ReportSummaryResult selectedSite={selectedSite} urlCall={urlCall} ref={componentRef} />
-                <button className="reportPrintBtn" onClick={handlePrint}>Print Report</button>
-              </div>
-            </TabPanel>
-
-          </Box>
-          
-          
+            
+            
+        </div>
       </div>
-    </div>
+    </AutoLogout>
   );
 };
 
