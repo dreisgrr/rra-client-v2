@@ -72,5 +72,5 @@ export const reservationStatus = {
 };
 
 export const GLOBAL = {
-    SESSION_DURATION: 1000 * 10
+    SESSION_DURATION: 1000 * 60 * 10 // 10 minutes
 }
