@@ -16,7 +16,9 @@ const Login = () => {
     const navigate = useNavigate();
 
     const handleChange = (e) => {
-        setCredentials(prev => ({...prev, [e.target.id]: e.target.value }))
+        let input = e.target.value
+        if (e.target.id === 'domainId') input = input.toUpperCase()
+        setCredentials(prev => ({...prev, [e.target.id]: input }))
     }
 
     const handleLogin = async e => {
